@@ -1,0 +1,1 @@
+This is the for first small practice project. Nothing new here but it is reinforcing the idea of css modules and also using components as wrappers with children, etc. But I do definitly have my preferred style of writing React code as compared to some of what he suggests. It's fun to see multiple viewpoints though and to have confidence in how I do some things. 
