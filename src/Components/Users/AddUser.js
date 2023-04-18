@@ -1,5 +1,6 @@
 import Card from '../UI/Card';
 import Button from '../UI/Button';
+import ErrorModal from '../UI/ErrorModal';
 
 import { useState } from 'react';
 
@@ -10,18 +11,40 @@ const AddUser = (props) => {
     const [newUserName, setNewUserName] = useState('');
     const [newUserAge, setNewUserAge] = useState('');
 
+    const [hasError, setHasError] = useState(false);
+    const [error, setError] = useState({});
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if(newUserName.trim() === 0 || newUserAge.length === 0){
+            setHasError(true);
+            setError({ title: 'Both input fields must be filled in', message: 'Yep, what the title says...'});
+            return;
+        }
+        if (+newUserAge < 1){
+            setHasError(true);
+            setError({ title: 'You must be 1 year old or older to play', message: 'Sorry kiddo...'});
+            return;
+        }
         const newUser = {
-            username: newUserName,
-            userAge: newUserAge
+            name: newUserName.trim(),
+            age: newUserAge
         }
 
         props.setUsers(prevUsers => {
             return [...prevUsers, newUser]
         });
+
+        setNewUserName('');
+        setNewUserAge('');
+
         console.log(props.users);
+    }
+
+    const resetError = () => {
+        setHasError(false);
+        setError({});
     }
 
     
@@ -46,6 +69,12 @@ const AddUser = (props) => {
 
                 <Button type='submit'>Add User</Button>
             </form>
+            {hasError && 
+                <ErrorModal 
+                    title={error.title} 
+                    message={error.message} 
+                    resetError={resetError}
+                />}
         </Card>
     )
 }
