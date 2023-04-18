@@ -1,1 +1,6 @@
 This is the for first small practice project. Nothing new here but it is reinforcing the idea of css modules and also using components as wrappers with children, etc. But I do definitly have my preferred style of writing React code as compared to some of what he suggests. It's fun to see multiple viewpoints though and to have confidence in how I do some things. 
+
+Notes on Portals and Fragments:     
+    React.Fragment is basically a wrapper function that works because the .createElement() will be able to return that function as an anomonous function. This is the same as React.Fragment. This works, I think, because it wraps the the children in an anomonous function. CHECK OUT THE 'components/wrapper/wrapper' for an example.
+
+    As for portals, they as used for things like modals/overlays for the sake of the same mindset as the aria roles. For example, you wouldnt give a div an 'onclick' rather than use a butoon. You start by adding portals in the index.js file and add a div, about the root div, with an id of your choosing. You then import ReactDom, create a new function containing your component and then in the parent component you use ReactDOM.createPortal() and enter the argements of yoour component and document.getElementById('pointer to the created root div') to get yourself there. CHECK OUT THE 'components/ui/errormodal' for an example.

@@ -49,33 +49,35 @@ const AddUser = (props) => {
 
     
     return (
-        <Card className={styles.input}>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor='username'>Username</label>
-                <input 
-                    type='text' 
-                    id='username' 
-                    value={newUserName}
-                    onChange={(e) => setNewUserName(e.target.value)} 
-                />
-
-                <label htmlFor='age'>Age</label>
-                <input 
-                    type='number' 
-                    id='age' 
-                    value={newUserAge}
-                    onChange={(e) => setNewUserAge(e.target.value)} 
-                />
-
-                <Button type='submit'>Add User</Button>
-            </form>
+        <>
             {hasError && 
-                <ErrorModal 
-                    title={error.title} 
-                    message={error.message} 
-                    resetError={resetError}
-                />}
-        </Card>
+            <ErrorModal 
+                title={error.title} 
+                message={error.message} 
+                resetError={resetError}
+            />}
+            <Card className={styles.input}>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor='username'>Username</label>
+                    <input 
+                        type='text' 
+                        id='username' 
+                        value={newUserName}
+                        onChange={(e) => setNewUserName(e.target.value)} 
+                    />
+
+                    <label htmlFor='age'>Age</label>
+                    <input 
+                        type='number' 
+                        id='age' 
+                        value={newUserAge}
+                        onChange={(e) => setNewUserAge(e.target.value)} 
+                    />
+
+                    <Button type='submit'>Add User</Button>
+                </form>
+            </Card>
+        </>
     )
 }
 
